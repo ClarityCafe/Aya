@@ -15,3 +15,7 @@ This will create a mock Ethereum Node with 1ETH balance and run the code to uplo
 You'll need a Infura account to deploy this.
 
 Go to [Infura's site](https://infura.io) to get one.
+
+
+Make sure you create a secrets.json that contains your mnemonics and the API key, 
+then run `yarn deploy`.

@@ -4,7 +4,8 @@
   "description": "IPFS delegate",
   "main": "ts-node index.ts",
   "scripts": {
-    "test": "ts-node index.ts"
+    "test": "ts-node index.ts",
+    "deploy": "truffle deploy --network rinkeby"
   },
   "author": "sr229",
   "license": "MIT",
@@ -18,7 +19,6 @@
     "solc": "^0.6.0",
     "truffle-hdwallet-provider": "^1.0.17",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.4",
-    "web3": "^1.2.4"
+    "typescript": "^3.7.4"
   }
 }
