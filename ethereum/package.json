@@ -1,0 +1,23 @@
+{
+  "name": "aya-eth",
+  "version": "1.0.0",
+  "description": "IPFS delegate",
+  "main": "ts-node index.ts",
+  "scripts": {
+    "test": "ts-node index.ts"
+  },
+  "author": "sr229",
+  "license": "MIT",
+  "dependencies": {
+    "ethereumjs-abi": "^0.6.8",
+    "ethereumjs-account": "^3.0.0",
+    "ethereumjs-tx": "^2.1.2",
+    "ethereumjs-util": "^6.2.0",
+    "ethereumjs-vm": "^4.1.2",
+    "ipfs-http-client": "^40.1.0",
+    "solc": "^0.6.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4",
+    "web3": "^1.2.4"
+  }
+}
