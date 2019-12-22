@@ -1,7 +1,7 @@
 // Solidity CDN delegate
 // Copyright Michael Chan
 // From: https://github.com/mcchan1/eth-ipfs
-pragma solidity ^0.5.0;
+pragma solidity ^0.6.0;
 
 contract IPFSDelegate
 {

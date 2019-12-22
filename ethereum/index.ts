@@ -17,7 +17,7 @@ function getSolcOutput () {
         language: 'Solidity',
         sources: {
             'contracts/IPFSDelegate.sol': {
-                content: fs.readFileSync(`${__dirname}/IPFSDelegate.sol`, 'utf8')
+                content: fs.readFileSync(`${__dirname}/contracts/IPFSDelegate.sol`, 'utf8')
             }
         },
         settings: {
@@ -60,7 +60,7 @@ function compileContracts() {
 }
 
 function getDelegateBytecode(solcOutput: any) : any {
-    return solcOutput.contracts['contracts/IPFSDelegate.sol'].Greeter.evm.bytecode.object;
+    return solcOutput.contracts['contracts/IPFSDelegate.sol'].IPFSDelegate.evm.bytecode.object;
 }
 
 async function getAccountNonce(vm: VM, accountPrivateKey: Buffer) {
