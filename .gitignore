@@ -1,2 +1,4 @@
 frontend/node_modules/*
 ethereum/node_modules/*
+ethereum/secrets.json
+ethereum/build/
