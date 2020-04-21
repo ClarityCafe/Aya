@@ -11,5 +11,12 @@
     "next": "9.3.5",
     "react": "16.13.1",
     "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.1",
+    "@types/react": "^16.9.34",
+    "eslint": "^6.8.0",
+    "eslint-config-clarity": "^0.3.3",
+    "typescript": "^3.8.3"
   }
 }
