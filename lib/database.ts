@@ -32,7 +32,6 @@ interface UserOptions {
     accountType: AccountType
     redditLink: String,
     bio: String,
-    authKey: String
     posts: Array<PostOptions>
 }
 
@@ -63,7 +62,7 @@ export async function initCollection(collectionName: String, permissions?: fauna
 export async function commitPost(collection: String, post: PostOptions): Promise<faunadb.RequestResult> {
     return await client.query(
         q.Create(
-            q.Collection(collection), {
+            q.Ref(q.Collection(collection), post.id), {
                 data: {
                     id: post.id,
                     name: post.name,
@@ -85,7 +84,7 @@ export async function commitPost(collection: String, post: PostOptions): Promise
 export async function commitCollection(collection: String, data: CollectionOptions): Promise<faunadb.RequestResult> {
     return await client.query(
         q.Create(
-            q.Collection(collection), {
+            q.Ref(q.Collection(collection), data.id), {
                 data: {
                     id: data.id,
                     author: data.author,
@@ -105,7 +104,7 @@ export async function commitCollection(collection: String, data: CollectionOptio
 export async function commitUser(collection:String, data: UserOptions): Promise<faunadb.RequestResult> {
     return await client.query(
         q.Create(
-            q.Collection(collection), {
+            q.Ref(q.Collection(collection), data.id), {
                 data: {
                     id: data.id,
                     username: data.username,
@@ -118,5 +117,37 @@ export async function commitUser(collection:String, data: UserOptions): Promise<
                 }
             }
         )
+    )
+}
+/**
+ * Edit the user object.
+ * @param collection the target collection
+ * @param data the Data to overwrite the current entry of the user.
+ */
+export async function editUser(collection: String, data:UserOptions): Promise<faunadb.RequestResult> {
+    return await client.query(
+        // we'll need to handle type checking in API-side.
+        q.Update(q.Ref(q.Collection(collection), data.id), {data}))
+}
+
+/**
+ * Deletes a Post associated by an ID
+ * @param collection the target collection
+ * @param id Snowflake ID of the user.
+ */
+export async function deletePost(collection: String, id: PostOptions["id"]): Promise<faunadb.RequestResult> {
+    return await client.query(
+        q.Delete(q.Ref(q.Collection(collection), id))
+    )
+}
+
+/**
+ * Deletes the user associated by an ID
+ * @param collection the target collection
+ * @param id Snowflake ID of the User.
+ */
+export async function deleteUser(collection: String, id: UserOptions["id"]): Promise<faunadb.RequestResult> {
+    return await client.query(
+        q.Delete(q.Ref(q.Collection(collection), id))
     )
 }
