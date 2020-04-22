@@ -1,6 +1,10 @@
 import faunadb from 'faunadb';
 
-const client = new faunadb.Client({secret: process.env.FAUNA_DATABASE_SECRET});
+let client: faunadb.Client;
+
+if (process.env.NODE_ENV === "development") client = new faunadb.Client({secret: process.env.FAUNADB_SECRET_DEV});
+else client = new faunadb.Client({secret: process.env.FAUNADB_SECRET_PRODUCTION});
+
 const  q = faunadb.query;
 
 interface PostOptions {
