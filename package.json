@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "postinstall": "prisma generate"
+    "start": "next start"
   },
   "dependencies": {
     "@now/node": "^1.5.1",
+    "faunadb": "^2.13.1",
     "flake-idgen": "^1.4.0",
     "next": "9.3.5",
     "react": "16.13.1",
