@@ -36,10 +36,10 @@ interface UserOptions {
 }
 
 enum AccountType {
-    AyaAdmin = 0,
-    AyaPartner = 1,
-    AyaSupporterUser = 2,
-    AyaRegularUser = 3
+    AyaAdmin = 0b0100,
+    AyaPartner = 0b0010,
+    AyaSupporterUser = 0b0001,
+    AyaRegularUser = 0b0000
 }
 /**
  * Initialize A Collection in the  Database. Only to be used if We're doing a transaction in a nonexistent Collection in a database.
@@ -149,5 +149,23 @@ export async function deletePost(collection: String, id: PostOptions["id"]): Pro
 export async function deleteUser(collection: String, id: UserOptions["id"]): Promise<faunadb.RequestResult> {
     return await client.query(
         q.Delete(q.Ref(q.Collection(collection), id))
+    )
+}
+
+export async function getPost(collection:String, id: PostOptions["id"]): Promise<faunadb.RequestResult> {
+    return await client.query(
+        q.Get(q.Ref(q.Collection(collection), id))
+    )
+}
+
+export async function getCollection(collection:String, id: CollectionOptions["id"]): Promise<faunadb.RequestResult> {
+    return await client.query(
+        q.Get(q.Ref(q.Collection(collection), id))
+    )
+}
+
+export async function getUser(collection:String, id: UserOptions["id"]): Promise<faunadb.RequestResult> {
+    return await client.query(
+        q.Get(q.Ref(q.Collection(collection), id))
     )
 }
