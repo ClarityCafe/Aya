@@ -117,7 +117,7 @@ export async function commitUser(collection:String, data: UserOptions): Promise<
                     dateRegistered: data.dateRegistered,
                     redditLink: data.redditLink,
                     accountType: data.accountType ?? AccountType.AyaRegularUser,
-                    bio: data.bio,
+                    bio: data.bio ?? null,
                     posts: [],
                     collections: []
                 }
