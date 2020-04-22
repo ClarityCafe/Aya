@@ -1,6 +1,6 @@
 import faunadb from 'faunadb';
 
-const client = new faunadb.Client({secret: process.env.FAUNA_KEY});
+const client = new faunadb.Client({secret: process.env.FAUNA_DATABASE_SECRET});
 const  q = faunadb.query;
 
 interface PostOptions {
@@ -49,15 +49,6 @@ export async function initCollection(collectionName: String, permissions?: fauna
             name: collectionName,
             permissions: permissions ?? null
         })
-    )
-}
-/**
- * Create a Database if database we're trying to query does not exist.
- * @param name Name for the database
- */
-export async function createDatabase(name?: String): Promise<faunadb.RequestResult> {
-    return await client.query(
-        q.CreateDatabase({name: name ?? "aya-prod"})
     )
 }
 /**
