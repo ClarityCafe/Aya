@@ -43,11 +43,11 @@ enum AccountType {
  * @param collectionName the name of the collection
  * @param permissions permissions to give to the collection. Refer to https://docs.fauna.com/fauna/current/security/permissions#collections.
  */
-export async function initCollection(collectionName: String, permissions: faunadb.ExprArg): Promise<faunadb.RequestResult> {
+export async function initCollection(collectionName: String, permissions?: faunadb.ExprArg): Promise<faunadb.RequestResult> {
     return await client.query(
         q.CreateCollection({
             name: collectionName,
-            permissions
+            permissions: permissions ?? null
         })
     )
 }
