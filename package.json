@@ -10,14 +10,12 @@
   },
   "dependencies": {
     "@now/node": "^1.5.1",
-    "@prisma/client": "^2.0.0-beta.2",
     "flake-idgen": "^1.4.0",
     "next": "9.3.5",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@prisma/cli": "^2.0.0-beta.2",
     "@types/flake-idgen": "^0.1.30",
     "@types/node": "^13.13.1",
     "@types/react": "^16.9.34",
