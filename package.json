@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@now/node": "^1.5.1",
+    "biguint-format": "^1.0.2",
     "faunadb": "^2.13.1",
     "flake-idgen": "^1.4.0",
     "next": "9.3.5",
