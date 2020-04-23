@@ -2,25 +2,22 @@ import { NextApiHandler } from "next";
 
 import { isAuthed } from "./isAuthed";
 
-interface Options {
-  authorizationRequired?: boolean;
-}
-
 // TODO: probably add CORS stuff as well
-export const methods = (
-  methodHandlers: {
-    [key: string]: NextApiHandler;
-  },
-  { authorizationRequired = false }: Options = {}
-): NextApiHandler => (req, res) => {
+export const methods = (methodHandlers: {
+  [key: string]:
+    | NextApiHandler
+    | { run: NextApiHandler; authorizationRequired?: boolean };
+}): NextApiHandler => (req, res) => {
   const method = req.method.toLowerCase();
+  const handler = methodHandlers[method];
 
   if (methodHandlers[method])
-    if (authorizationRequired && !isAuthed(req)) {
+    if (typeof handler === "function") return handler(req, res);
+    else if (handler.authorizationRequired && !isAuthed(req)) {
       res
         .status(401)
         .json({ error: 401, message: "Authorization required or is invalid" });
-    } else return methodHandlers[method](req, res);
+    } else return handler.run(req, res);
   else
     res
       .status(405)
