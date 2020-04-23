@@ -151,19 +151,31 @@ export async function deleteUser(collection: String, id: UserOptions["id"]): Pro
         q.Delete(q.Ref(q.Collection(collection), id))
     )
 }
-
+/**
+ * Gets the post object from an ID.
+ * @param collection the target collection
+ * @param id the ID of the post.
+ */
 export async function getPost(collection:String, id: PostOptions["id"]): Promise<faunadb.RequestResult> {
     return await client.query(
         q.Get(q.Ref(q.Collection(collection), id))
     )
 }
-
+/**
+ * gets the Collection from a Database Collection (It's confusing I know)
+ * @param collection the target collection
+ * @param id the Snowflake ID of the collection
+ */
 export async function getCollection(collection:String, id: CollectionOptions["id"]): Promise<faunadb.RequestResult> {
     return await client.query(
         q.Get(q.Ref(q.Collection(collection), id))
     )
 }
-
+/**
+ * gets the user from a Database Collection
+ * @param collection the target collection
+ * @param id the Snowflake of the user.
+ */
 export async function getUser(collection:String, id: UserOptions["id"]): Promise<faunadb.RequestResult> {
     return await client.query(
         q.Get(q.Ref(q.Collection(collection), id))
