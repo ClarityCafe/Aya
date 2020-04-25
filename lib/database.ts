@@ -1,3 +1,6 @@
+// I would let you know this was coded under 24 hours by some dipshit who lacks sleep
+// please help me I'm suffering inside
+// - Ayane Satomi
 import { ConnectionOptions, createConnection } from "typeorm";
 import { Post } from "./entities/Post";
 import { Collection } from "./entities/Collection";
@@ -106,4 +109,22 @@ export async function searchCollectionByKeyword(keyword: string) {
     let connection = await createConnection(config);
 
     return await connection.getRepository(Collection).find({name: keyword, tags: Tag[keyword]});
+}
+
+export async function searchUserById(id: number) {
+    let connection = await createConnection(config);
+
+    return await connection.getRepository(User).find({id: id});
+}
+
+export async function searchPostById(id: number) {
+    let connection = await createConnection(config);
+
+    return await connection.getRepository(Post).find({id: id});
+}
+
+export async function searchCollectionById(id: number) {
+    let connection = await createConnection(config);
+
+    return await connection.getRepository(Post).find({id: id});
 }
