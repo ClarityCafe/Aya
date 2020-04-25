@@ -20,5 +20,5 @@ export class Post {
     public dateCreated: string;
 
     @ManyToMany(type => Tag, tags => tags.posts)
-    tags: Array<Tag>
+    tags: Tag[];
 }

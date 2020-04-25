@@ -15,11 +15,11 @@ export class User {
 
     @Column()
     @OneToMany(type => Post, post => post.id )
-    public posts: Array<Post>;
+    public posts: Post[];
 
     @Column()
     @OneToMany(type => Collection, collection => collection.id)
-    public collections: Array<Collection>;
+    public collections: Collection[];
 
     @Column("timestamp")
     public dateCreated: string;

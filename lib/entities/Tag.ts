@@ -9,12 +9,12 @@ export class Tag {
 
     @Column()
     @ManyToMany(type => Post, post => post.tags)
-    posts: Array<Post>;
+    posts: Post[];
 
     @Column()
     @ManyToMany(type => Collection, collection => collection.tags)
-    collections: Array<Collection>;
-    
+    collections: Collection[];
+
     @Column("bool")
     public isNsfw: boolean;
 }

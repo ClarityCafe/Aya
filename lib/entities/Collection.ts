@@ -13,12 +13,12 @@ export class Collection {
     public author: number;  
 
     @ManyToMany(type => Post, post => post.id)
-    public posts: Array<Post>;
+    public posts: Post[];
 
     @Column("bool")
     public isNsfw: boolean;
 
     @ManyToMany(type => Tag, tags => tags.collections)
     @Column()
-    tags: Array<Tag>
+    tags: Tag[];
 }
