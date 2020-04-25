@@ -6,9 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "db:setup": "yarn db:create:dev && yarn db:create:test",
-    "db:create:dev": "createdb --owner=mongodb next_now_dev",
-    "db:create:test": "createdb --owner=mongodb next_now_test",
     "typeorm:local": "node ./node_modules/typeorm/cli.js",
     "g:entity": "yarn typeorm:local entity:create -n"
   },
