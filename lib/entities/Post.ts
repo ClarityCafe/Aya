@@ -11,6 +11,9 @@ export class Post {
     public author: number;
 
     @Column()
+    public caption: string;
+
+    @Column()
     public cdnUrl: string;
 
     @Column("bool")

@@ -12,6 +12,9 @@ export class Collection {
     @ManyToOne(type => User, user => user.collections)
     public author: number;  
 
+    @Column()
+    public name: string;
+
     @ManyToMany(type => Post, post => post.id)
     public posts: Post[];
 
