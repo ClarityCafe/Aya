@@ -5,16 +5,16 @@ import {Collection} from "./Collection";
 @Entity()
 export class User {
     @PrimaryColumn("int", {unique: true})
-    public id: number;
+    public id: Number;
 
     @Column("string", {length: 24})
-    public username: string;
+    public username: String;
 
     @Column("string")
-    public redditLink: string;
+    public redditLink: String;
 
     @Column("string", {length: 100})
-    public bio: string;
+    public bio: String;
 
     @Column("array")
     @OneToMany(type => Post, post => post.id )
@@ -25,6 +25,5 @@ export class User {
     public collections: Collection[];
 
     @Column("timestamp")
-    @CreateDateColumn()
-    public dateCreated: string;
+    public dateCreated: String;
 }

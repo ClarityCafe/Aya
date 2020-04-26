@@ -5,23 +5,22 @@ import {Tag} from './Tag';
 @Entity()
 export class Post {
     @PrimaryColumn("int", {unique: true})
-    public id: number;
+    public id: Number;
 
     @ManyToOne(type => User,  user => user.posts)
-    public author: number;
+    public author: Number;
 
     @Column("string", {length: 24})
-    public caption: string;
+    public caption: String;
 
     @Column("string")
-    public cdnUrl: string;
+    public cdnUrl: String;
 
     @Column("bool")
-    public isNsfw: boolean;
+    public isNsfw: Boolean;
 
     @Column("timestamp")
-    @CreateDateColumn()
-    public dateCreated: string;
+    public dateCreated: String;
 
     @ManyToMany(type => Tag, tags => tags.posts)
     tags: Tag[];
