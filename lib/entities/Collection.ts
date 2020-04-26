@@ -6,11 +6,11 @@ import {Tag} from './Tag';
 @Entity()
 export class Collection {
     @PrimaryColumn("int", {unique: true})
-    public id: number;
+    public id: Number;
 
     @Column("int")
     @ManyToOne(type => User, user => user.collections)
-    public author: number;  
+    public author: Number;  
 
     @Column("string", {length: 24})
     public name: string;

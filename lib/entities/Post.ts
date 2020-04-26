@@ -20,7 +20,6 @@ export class Post {
     public isNsfw: boolean;
 
     @Column("timestamp")
-    @CreateDateColumn()
     public dateCreated: string;
 
     @ManyToMany(type => Tag, tags => tags.posts)

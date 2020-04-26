@@ -5,7 +5,7 @@ import {Collection} from "./Collection";
 @Entity()
 export class User {
     @PrimaryColumn("int", {unique: true})
-    public id: number;
+    public id: Number;
 
     @Column("string", {length: 24})
     public username: string;
@@ -25,6 +25,5 @@ export class User {
     public collections: Collection[];
 
     @Column("timestamp")
-    @CreateDateColumn()
     public dateCreated: string;
 }

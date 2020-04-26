@@ -113,17 +113,17 @@ export async function searchCollectionByKeyword(keyword: string) {
 export async function searchUserById(id: number) {
     let connection = await createConnection(config);
 
-    return await connection.getRepository(User).find({id: id});
+    return await connection.getRepository(User).findOneOrFail({id: id});
 }
 
 export async function searchPostById(id: number) {
     let connection = await createConnection(config);
 
-    return await connection.getRepository(Post).find({id: id});
+    return await connection.getRepository(Post).findOneOrFail({id: id});
 }
 
 export async function searchCollectionById(id: number) {
     let connection = await createConnection(config);
 
-    return await connection.getRepository(Post).find({id: id});
+    return await connection.getRepository(Post).findOneOrFail({id: id});
 }
