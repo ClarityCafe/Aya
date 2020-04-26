@@ -126,5 +126,4 @@ export async function searchCollectionById(id: number) {
     let connection = await createConnection(config);
 
     return await connection.getRepository(Post).findOneOrFail({id: id});
-
 }

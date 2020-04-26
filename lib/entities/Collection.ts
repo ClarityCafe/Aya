@@ -13,7 +13,7 @@ export class Collection {
     public author: Number;  
 
     @Column("string", {length: 24})
-    public name: String;
+    public name: string;
 
     @Column("array")
     @ManyToMany(type => Post, post => post.id)

@@ -8,13 +8,13 @@ export class User {
     public id: Number;
 
     @Column("string", {length: 24})
-    public username: String;
+    public username: string;
 
     @Column("string")
-    public redditLink: String;
+    public redditLink: string;
 
     @Column("string", {length: 100})
-    public bio: String;
+    public bio: string;
 
     @Column("array")
     @OneToMany(type => Post, post => post.id )
@@ -25,5 +25,5 @@ export class User {
     public collections: Collection[];
 
     @Column("timestamp")
-    public dateCreated: String;
+    public dateCreated: string;
 }
