@@ -1,14 +1,31 @@
 # Project Aya: the globally-distributed waifu repository
 
-Project Aya is a IPFS-powered booru service. Unlike traditional boorus using S3 or Object Storage, we rely on a network of CDNs already implemented by multiple parties.
+Project Aya is not your typical booru. It's designed to be simple, minimal, and only focus on what matters most - the images.
 
-For now nothing is not yet in stone here but if you wanna check the roadmap, check out our issues.
+Aya was created to leverage the current trend with web development - which is the serverless web application trend. It allows websites to be more efficient with cost and ultimately would future-proof the platform by splitting a what would be a monolithic system for the API into a series of split functions that only executes when needed.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/Vercel/next.js/tree/canary/packages/create-next-app).
+We also made the UI much more simpler and modern compared to contemporaries, giving it a more professional, but simple look that is easy to get on to.
+
+![image](https://user-images.githubusercontent.com/14976516/80306028-3c7f4d80-87f3-11ea-8a62-6fe12ac7353c.png)
+
+And to top it off, we don't rely on S3 or any vendor-specific object storage, we use [IPFS](https://ipfs.io) to host our content, this makes sure your images are available, even if Project Aya goes down. 
 
 ## Contributing
 
-First, run the development server:
+For now, we're still in early stages, but we accept contributions both small and large. Keep in mind we already have the UI designed (just not implemented yet), so if you want to change something in the UI, consult [Ayane Satomi](https://github.com/sr229) - the project proponent, if you want to change something (opening an issue before doing something with the UI's overall look and feel works as well).
+
+If you want to test what works currently, follow the instructions below.
+
+You will need the following first to get started:
+
+- SauceNAO API Key
+- MongoDB Database URL (a local one would work!)
+- Reddit OAuth secrets
+
+
+you will need to set them as environment variables (we make use of environment variables heavily so we can deploy on Vercel) - consult `lib/database.ts` and `lib/saucenao.ts` for the environment variable naming.
+
+With that done, run the development server:
 
 ```bash
 npm run dev
@@ -16,7 +33,7 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. Hopefully nothing breaks. If it does, go ahead and open an [issue](https://github.com/ClarityCafe/Aya/issues/new) because that's clearly not intended.
 
 ## Deploy on Vercel
 
@@ -27,3 +44,5 @@ Check out Vercel's [Next.js deployment documentation](https://nextjs.org/docs/de
 ## Copyright
 
 Copyright &copy; 2019 Ayane Satomi, Ovyerus, et al. Licensed under MIT.
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
