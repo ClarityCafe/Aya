@@ -1,4 +1,4 @@
-import {Entity, PrimaryColumn, Column, OneToMany, ManyToMany} from "typeorm";
+import {Entity, PrimaryColumn, Column, ManyToMany} from "typeorm";
 import {Post} from "./Post";
 import {Collection} from "./Collection";
 
