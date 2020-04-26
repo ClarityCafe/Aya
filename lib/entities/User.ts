@@ -1,26 +1,30 @@
-import {Entity, PrimaryColumn, Column, OneToMany} from "typeorm";
+import {Entity, PrimaryColumn, Column, OneToMany, CreateDateColumn} from "typeorm";
 import {Post} from "./Post";
 import {Collection} from "./Collection";
 
 @Entity()
 export class User {
-    @PrimaryColumn("uniqueidentifier")
+    @PrimaryColumn("int", {unique: true})
     public id: number;
 
-    @Column()
+    @Column("string", {length: 24})
     public username: string;
 
-    @Column()
+    @Column("string")
     public redditLink: string;
 
-    @Column()
+    @Column("string", {length: 100})
+    public bio: string;
+
+    @Column("array")
     @OneToMany(type => Post, post => post.id )
     public posts: Post[];
 
-    @Column()
+    @Column("array")
     @OneToMany(type => Collection, collection => collection.id)
     public collections: Collection[];
 
     @Column("timestamp")
+    @CreateDateColumn()
     public dateCreated: string;
 }

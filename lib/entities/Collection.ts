@@ -5,16 +5,17 @@ import {Tag} from './Tag';
 
 @Entity()
 export class Collection {
-    @PrimaryColumn("uniqueidentifier")
+    @PrimaryColumn("int", {unique: true})
     public id: number;
 
-    @Column()
+    @Column("int")
     @ManyToOne(type => User, user => user.collections)
     public author: number;  
 
-    @Column()
+    @Column("string", {length: 24})
     public name: string;
 
+    @Column("array")
     @ManyToMany(type => Post, post => post.id)
     public posts: Post[];
 
@@ -22,6 +23,6 @@ export class Collection {
     public isNsfw: boolean;
 
     @ManyToMany(type => Tag, tags => tags.collections)
-    @Column()
+    @Column("array")
     tags: Tag[];
 }

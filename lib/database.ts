@@ -70,7 +70,6 @@ export async function createUser(input: User) {
     newUser.redditLink = input.redditLink;
     newUser.posts = input.posts ?? [];
     newUser.collections = input.collections ?? [];
-    newUser.dateCreated = input.dateCreated;
 
     await connection.mongoManager.save(newUser);    
 }
@@ -109,7 +108,7 @@ export async function searchCollectionByKeyword(keyword: string) {
     let connection = await createConnection(config);
 
     return await connection.getRepository(Collection).find({name: keyword, tags: Tag[keyword]});
-}
+} 
 
 export async function searchUserById(id: number) {
     let connection = await createConnection(config);

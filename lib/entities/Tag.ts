@@ -4,14 +4,14 @@ import {Collection} from "./Collection";
 
 @Entity()
 export class Tag {
-    @PrimaryColumn("uniqueidentifier")
+    @PrimaryColumn("string", {unique: true})
     name: string;
 
-    @Column()
+    @Column("array", {unique: true})
     @ManyToMany(type => Post, post => post.tags)
     posts: Post[];
 
-    @Column()
+    @Column("array")
     @ManyToMany(type => Collection, collection => collection.tags)
     collections: Collection[];
 
