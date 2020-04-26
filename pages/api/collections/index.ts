@@ -3,8 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { createCollection, getAllCollections } from "../../../lib/database";
 import idGen from "../../../lib/idgen";
 import { validate } from "../../../lib/validate";
-import Joi from "@hapi/joi";
-import { Collection } from "../../../lib/entities/Collection";
 import { CollectionSchema } from "../../../lib/schemas/collection.schema";
 
 
