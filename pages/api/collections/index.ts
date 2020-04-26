@@ -5,6 +5,7 @@ import idGen from "../../../lib/idgen";
 import { validate } from "../../../lib/validate";
 import Joi from "@hapi/joi";
 import { Collection } from "../../../lib/entities/Collection";
+import { CollectionSchema } from "../../../lib/schemas/collection.schema";
 
 
 export default methods({
@@ -20,7 +21,7 @@ export default methods({
     },
     post: {
         authorizationRequired: true,
-        run: validate({schema: Joi.object(Collection)}, async (req: NextApiRequest, res: NextApiResponse) => {
+        run: validate({schema: CollectionSchema}, async (req: NextApiRequest, res: NextApiResponse) => {
             if (req.headers["content-type"] !== "application/json") res.end({code: 400, message: "Request body is not JSON."});
             
             try {

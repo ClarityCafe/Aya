@@ -5,7 +5,7 @@ import {Collection} from "./Collection";
 @Entity()
 export class User {
     @PrimaryColumn("int", {unique: true})
-    public id: Number;
+    public id: number;
 
     @Column("string", {length: 24})
     public username: string;

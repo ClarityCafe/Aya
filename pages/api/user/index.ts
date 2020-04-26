@@ -4,8 +4,7 @@ import { NextApiResponse, NextApiRequest } from "next";
 import { createUser, getAllUsers } from "../../../lib/database";
 import idGen from "../../../lib/idgen";
 import { validate } from "../../../lib/validate";
-import Joi from "@hapi/joi";
-import { User } from "../../../lib/entities/User";
+import { UserSchema } from "../../../lib/schemas/user.schema";
 
 export default methods({
     get: async (req: NextApiRequest, res: NextApiResponse) => {
@@ -17,25 +16,22 @@ export default methods({
             res.status(500).json({code: res.statusCode.toString(), message: `Something went wrong: ${e}`});
         }
     },
-    post: {
-        authorizationRequired: true,
-        run: validate({schema: Joi.object(User)}, async (req: NextApiRequest, res: NextApiResponse) => {
-            if (req.headers["content-type"] !== "application/json") res.end({code: 400, message: "Request body is not JSON."});
+    post: validate({schema: UserSchema}, async (req: NextApiRequest, res: NextApiResponse) => {
+        if (req.headers["content-type"] !== "application/json") res.end({code: 400, message: "Request body is not JSON."});
             
-            try {
-                await createUser({
-                    id: idGen(),
-                    username: req.body.user,
-                    bio: req.body.bio ?? null,
-                    redditLink: req.body.redditLink,
-                    posts: [],
-                    collections: [],
-                    dateCreated: new Date().toString()
-                });
-                res.status(204);
-            } catch (e) {
-                res.status(500).json({code: res.statusCode.toString(), message: `Something went wrong: ${e}`});
-            }
-        })
-    }
+        try {
+            await createUser({
+                id: idGen(),
+                username: req.body.user,
+                bio: req.body.bio ?? null,
+                redditLink: req.body.redditLink,
+                posts: [],
+                collections: [],
+                dateCreated: new Date().toString()
+            });
+            res.status(204);
+        } catch (e) {
+            res.status(500).json({code: res.statusCode.toString(), message: `Something went wrong: ${e}`});
+        }
+    })
 })
