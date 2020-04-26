@@ -3,6 +3,9 @@ import "../../../lib/database";
 import { NextApiResponse, NextApiRequest } from "next";
 import { createUser, getAllUsers } from "../../../lib/database";
 import idGen from "../../../lib/idgen";
+import { validate } from "../../../lib/validate";
+import Joi from "@hapi/joi";
+import { User } from "../../../lib/entities/User";
 
 export default methods({
     get: async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,7 +19,7 @@ export default methods({
     },
     post: {
         authorizationRequired: true,
-        run: async (req: NextApiRequest, res: NextApiResponse) => {
+        run: validate({schema: Joi.object(User)}, async (req: NextApiRequest, res: NextApiResponse) => {
             if (req.headers["content-type"] !== "application/json") res.end({code: 400, message: "Request body is not JSON."});
             
             try {
@@ -33,6 +36,6 @@ export default methods({
             } catch (e) {
                 res.status(500).json({code: res.statusCode.toString(), message: `Something went wrong: ${e}`});
             }
-        }
+        })
     }
 })

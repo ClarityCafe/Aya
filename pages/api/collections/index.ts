@@ -2,6 +2,9 @@ import { methods } from "../../../lib/methods";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createCollection, getAllCollections } from "../../../lib/database";
 import idGen from "../../../lib/idgen";
+import { validate } from "../../../lib/validate";
+import Joi from "@hapi/joi";
+import { Collection } from "../../../lib/entities/Collection";
 
 
 export default methods({
@@ -17,7 +20,7 @@ export default methods({
     },
     post: {
         authorizationRequired: true,
-        run: async (req: NextApiRequest, res: NextApiResponse) => {
+        run: validate({schema: Joi.object(Collection)}, async (req: NextApiRequest, res: NextApiResponse) => {
             if (req.headers["content-type"] !== "application/json") res.end({code: 400, message: "Request body is not JSON."});
             
             try {
@@ -34,6 +37,6 @@ export default methods({
             } catch (e) {
                 res.status(500).json({code: res.statusCode.toString(), message: `Something went wrong: ${e}`});
             }
-        }
+        })
     }
 })
