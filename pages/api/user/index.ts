@@ -23,7 +23,6 @@ export default methods({
             await createUser({
                 id: idGen(),
                 username: req.body.user,
-                bio: req.body.bio ?? null,
                 redditLink: req.body.redditLink,
                 posts: [],
                 collections: [],

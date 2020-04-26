@@ -13,9 +13,6 @@ export class User {
     @Column("string")
     public redditLink: string;
 
-    @Column("string", {length: 100})
-    public bio: string;
-
     @Column("array")
     @OneToMany(type => Post, post => post.id )
     public posts: Post[];
