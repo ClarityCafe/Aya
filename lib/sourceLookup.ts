@@ -15,7 +15,7 @@ export default async function (sourceUrl: string) {
         return await cache.get(sourceUrl);
     } catch {
         // Looks like we don't know this waifu so let's try to look it up.
-        // then store it in the cache for 48 hours to lessen the load.
+        // then store it in the cache for 56 hours to lessen the load.
         let sagiriRes: SagiriResult[] = await client(sourceUrl);
         await cache.set(sourceUrl, sagiriRes, "ex", 1000 * 60 * 60 * 56);
 
