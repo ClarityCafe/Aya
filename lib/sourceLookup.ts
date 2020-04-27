@@ -20,6 +20,6 @@ export default async function (sourceUrl: string) {
         await cache.set(sourceUrl, sagiriRes, "ex", 1000 * 60 * 60 * 56);
 
         // return from the cache
-        return cache.get(sourceUrl);
+        return await cache.get(sourceUrl);
     }
 }
