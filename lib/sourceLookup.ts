@@ -5,8 +5,10 @@ import Redis from "ioredis";
 let client = sagiri(process.env.SAUCENAO_API_KEY, {results: 5});
 let cache = new Redis(process.env.REDIS_URL);
 
-// TODO: we won't save this in the DB but we could save it in the cache like Redis
-// that way we don't need to requery SauceNAO
+/**
+ * Looks up using SauceNAO and saves it in a cache for 56 hours.
+ * @param sourceUrl the URL for the image to look up.
+ */
 export default async function (sourceUrl: string) {
     try {
         // Let's try to see if we already looked it up before...
