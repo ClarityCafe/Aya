@@ -14,6 +14,7 @@
     "biguint-format": "^1.0.2",
     "dotenv": "^8.2.0",
     "flake-idgen": "^1.4.0",
+    "ioredis": "^4.16.3",
     "mongodb": "^3.5.6",
     "next": "9.3.5",
     "react": "16.13.1",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/flake-idgen": "^0.1.30",
     "@types/hapi__joi": "^16.0.12",
+    "@types/ioredis": "^4.14.9",
     "@types/node": "^13.13.1",
     "@types/react": "^16.9.34",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
