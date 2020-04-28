@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "eslint --ext .js,.ts,.tsx,.jsx --fix .",
     "typeorm:local": "node ./node_modules/typeorm/cli.js",
     "g:entity": "yarn typeorm:local entity:create -n"
   },

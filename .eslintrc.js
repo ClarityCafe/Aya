@@ -1,8 +1,8 @@
 module.exports = {
-    extends: ['clarity/base', 'clarity/react-base'],
-    parser: 'babel-eslint',
-    parserOptions: {
-      ecmaVersion: 2018,
-      sourceType: 'module'
-    }
-  };
+  extends: ["clarity/typescript", "clarity/react-typescript"],
+  parserOptions: {
+    ecmaVersion: 2019,
+    sourceType: "module",
+    project: "./tsconfig.json",
+  },
+};
