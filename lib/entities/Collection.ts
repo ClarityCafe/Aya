@@ -1,29 +1,24 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, ManyToMany } from "typeorm";
+import { Entity, Column, ManyToOne, ManyToMany } from "typeorm";
 
+import Base from "./Base";
 import Post from "./Post";
 import Tag from "./Tag";
 import User from "./User";
 
 @Entity()
-export default class Collection {
-  @PrimaryColumn("int", { unique: true })
-  id: number;
-
-  @Column("int")
+export default class Collection extends Base {
   @ManyToOne(() => User, (user) => user.collections)
   author: number;
 
   @Column("string", { length: 24 })
   name: string;
 
-  @Column("array")
   @ManyToMany(() => Post, (post) => post.id)
   posts: Post[];
 
   @Column("bool")
-  isNsfw: boolean;
+  nsfw: boolean;
 
   @ManyToMany(() => Tag, (tags) => tags.collections)
-  @Column("array")
   tags: Tag[];
 }

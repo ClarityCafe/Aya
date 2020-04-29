@@ -1,13 +1,11 @@
-import { Entity, PrimaryColumn, ManyToOne, Column, ManyToMany } from "typeorm";
+import { Entity, ManyToOne, Column, ManyToMany } from "typeorm";
 
+import Base from "./Base";
 import Tag from "./Tag";
 import User from "./User";
 
 @Entity()
-export default class Post {
-  @PrimaryColumn("int", { unique: true })
-  id: number;
-
+export default class Post extends Base {
   @ManyToOne(() => User, (user) => user.posts)
   author: number;
 
@@ -18,10 +16,7 @@ export default class Post {
   cdnUrl: string;
 
   @Column("bool")
-  isNsfw: boolean;
-
-  @Column("timestamp")
-  dateCreated: string;
+  nsfw: boolean;
 
   @ManyToMany(() => Tag, (tags) => tags.posts)
   tags: Tag[];

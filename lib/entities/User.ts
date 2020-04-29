@@ -1,30 +1,23 @@
-import {
-  Entity,
-  PrimaryColumn,
-  Column,
-  OneToMany,
-  CreateDateColumn,
-} from "typeorm";
+import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm";
 
+import Base from "./Base";
 import Collection from "./Collection";
 import Post from "./Post";
 
 @Entity()
-export default class User {
+export default class User extends Base {
   @PrimaryColumn("int", { unique: true })
   id: number;
 
   @Column("string", { length: 24 })
   username: string;
 
-  @Column("string")
+  @Column("string", { unique: true })
   redditName: string;
 
-  @Column("array")
   @OneToMany(() => Post, (post) => post.id)
   posts: Post[];
 
-  @Column("array")
   @OneToMany(() => Collection, (collection) => collection.id)
   collections: Collection[];
 
