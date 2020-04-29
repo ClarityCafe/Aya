@@ -20,7 +20,4 @@ export default class User extends Base {
 
   @OneToMany(() => Collection, (collection) => collection.id)
   collections: Collection[];
-
-  @Column("timestamp")
-  dateCreated: string;
 }

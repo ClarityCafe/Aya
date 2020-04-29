@@ -26,8 +26,10 @@ export default methods({
           name: req.body.name,
           author: req.body.author,
           posts: req.body.posts,
-          isNsfw: req.body.isNsfw,
           tags: req.body.tags,
+          nsfw: req.body.nsfw,
+          createdAt: new Date(),
+          updatedAt: new Date()
         });
 
         res.status(204).end();

@@ -21,10 +21,11 @@ export default methods({
       await createUser({
         id: idGen(),
         username: req.body.user,
-        redditLink: req.body.redditLink,
+        redditName: req.body.redditName,
         posts: [],
         collections: [],
-        dateCreated: new Date().toString(),
+        createdAt: new Date(),
+        updatedAt: new Date()
       });
       res.status(204);
     }

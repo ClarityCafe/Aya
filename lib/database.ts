@@ -29,8 +29,10 @@ export async function createPost(input: Post) {
   newPost.caption = input.caption;
   newPost.author = input.author;
   newPost.cdnUrl = input.cdnUrl;
-  newPost.isNsfw = input.isNsfw;
+  newPost.nsfw = input.nsfw;
   newPost.tags = input.tags;
+  newPost.createdAt = input.createdAt;
+  newPost.updatedAt = input.updatedAt;
 
   await connection.mongoManager.save(newPost);
 }
@@ -41,9 +43,11 @@ export async function createCollection(input: Collection) {
   const newCollection = new Collection();
   newCollection.id = input.id;
   newCollection.author = input.author;
-  newCollection.isNsfw = input.isNsfw;
+  newCollection.nsfw = input.nsfw;
   newCollection.posts = input.posts;
   newCollection.tags = input.tags;
+  newCollection.createdAt = input.createdAt;
+  newCollection.updatedAt = input.createdAt;
 
   await connection.mongoManager.save(newCollection);
 }
@@ -64,9 +68,11 @@ export async function createUser(input: User) {
   const newUser = new User();
   newUser.id = input.id;
   newUser.username = input.username;
-  newUser.redditLink = input.redditLink;
+  newUser.redditName = input.redditName;
   newUser.posts = input.posts ?? [];
   newUser.collections = input.collections ?? [];
+  newUser.createdAt = input.createdAt;
+  newUser.updatedAt = input.updatedAt;
 
   await connection.mongoManager.save(newUser);
 }

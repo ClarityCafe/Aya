@@ -30,8 +30,9 @@ export default methods({
           caption: req.body.caption,
           cdnUrl: req.body.cdnUrl,
           tags: req.body.tags ?? [],
-          dateCreated: new Date().toString(),
-          isNsfw: req.body.isNsfw ?? false,
+          nsfw: req.body.nsfw,
+          createdAt: new Date(),
+          updatedAt: new Date()
         });
 
         res.status(204).end();
