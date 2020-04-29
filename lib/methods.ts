@@ -1,9 +1,10 @@
 import { NextApiHandler } from "next";
 
 import { isAuthed } from "./isAuthed";
+import handleError from "./handleError";
 
 // TODO: probably add CORS stuff as well
-export const methods = (methodHandlers: {
+const methods = (methodHandlers: {
   [key: string]:
     | NextApiHandler
     | { run: NextApiHandler; authorizationRequired?: boolean };
@@ -11,15 +12,18 @@ export const methods = (methodHandlers: {
   const method = req.method.toLowerCase();
   const handler = methodHandlers[method];
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (methodHandlers[method])
-    if (typeof handler === "function") return handler(req, res);
+    if (typeof handler === "function") return handleError(handler)(req, res);
     else if (handler.authorizationRequired && !isAuthed(req)) {
       res
         .status(401)
-        .json({ error: 401, message: "Authorization required or is invalid" });
-    } else return handler.run(req, res);
+        .json({ code: 401, message: "Authorization required or is invalid" });
+    } else return handleError(handler.run)(req, res);
   else
     res
       .status(405)
-      .json({ error: 405, message: "Method not available on this endpoint" });
+      .json({ code: 405, message: "Method not available on this endpoint" });
 };
+
+export default methods;
