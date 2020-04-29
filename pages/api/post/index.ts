@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import methods from "../../../lib/methods";
 import { createPost, getAllPosts } from "../../../lib/database";
 import idGen from "../../../lib/idgen";
-import validate from "../../../lib/validate";
+import methods from "../../../lib/methods";
 import { PostSchema } from "../../../lib/schemas";
+import validate from "../../../lib/validate";
 
 export default methods({
   async get(req: NextApiRequest, res: NextApiResponse) {

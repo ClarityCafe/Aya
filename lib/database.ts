@@ -3,8 +3,8 @@
 // - Ayane Satomi
 import { ConnectionOptions, createConnection } from "typeorm";
 
-import Post from "./entities/Post";
 import Collection from "./entities/Collection";
+import Post from "./entities/Post";
 import Tag from "./entities/Tag";
 import User from "./entities/User";
 

@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column, ManyToMany } from "typeorm";
 
-import Post from "./Post";
 import Collection from "./Collection";
+import Post from "./Post";
 
 @Entity()
 export default class Tag {

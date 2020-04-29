@@ -1,5 +1,5 @@
-import sagiri, { SagiriResult } from "sagiri";
 import Redis from "ioredis";
+import sagiri, { SagiriResult } from "sagiri";
 
 // only output 5 best results.
 const client = sagiri(process.env.SAUCENAO_API_KEY, { results: 5 });

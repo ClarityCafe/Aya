@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import methods from "../../../lib/methods";
 import { searchCollectionById } from "../../../lib/database";
+import methods from "../../../lib/methods";
 
 export default methods({
   async get(req: NextApiRequest, res: NextApiResponse) {

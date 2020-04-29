@@ -6,8 +6,8 @@ import {
   CreateDateColumn,
 } from "typeorm";
 
-import Post from "./Post";
 import Collection from "./Collection";
+import Post from "./Post";
 
 @Entity()
 export default class User {
@@ -18,7 +18,7 @@ export default class User {
   username: string;
 
   @Column("string")
-  redditLink: string;
+  redditName: string;
 
   @Column("array")
   @OneToMany(() => Post, (post) => post.id)

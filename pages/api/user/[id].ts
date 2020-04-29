@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 // import Joi from "@hapi/joi";
 
-import methods from "../../../lib/methods";
 import { searchUserById } from "../../../lib/database";
+import methods from "../../../lib/methods";
 // import validate from "../../../lib/validate";
 // import User from "../../../lib/entities/User";
 

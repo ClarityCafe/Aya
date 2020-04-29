@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["clarity/typescript", "clarity/react-typescript"],
+  extends: ["clarity/react-typescript", "plugin:import/typescript"],
   parserOptions: {
     ecmaVersion: 2019,
     sourceType: "module",

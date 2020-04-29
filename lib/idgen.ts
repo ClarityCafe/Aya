@@ -1,8 +1,8 @@
 /**
  * ID Generator using Twitter snowflakes.
  */
-import FlakeId from "flake-idgen";
 import format from "biguint-format";
+import FlakeId from "flake-idgen";
 
 /**
  * Generates a IEEE 754-compliant Snowflake converted to decimal.

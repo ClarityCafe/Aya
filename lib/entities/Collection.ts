@@ -1,8 +1,8 @@
 import { Entity, PrimaryColumn, Column, ManyToOne, ManyToMany } from "typeorm";
 
-import User from "./User";
 import Post from "./Post";
 import Tag from "./Tag";
+import User from "./User";
 
 @Entity()
 export default class Collection {
