@@ -8,12 +8,14 @@ interface ValidateOptions {
   location?: Locations;
 }
 
-export const validate = (
+const validate = (
   { schema, location = "body" }: ValidateOptions,
   handler: NextApiHandler
 ): NextApiHandler => (req, res) => {
   const { error } = schema.validate(req[location]);
 
-  if (error) res.status(400).json({ code: 400, message: error });
-  else return handler(req, res);
+  if (!error) return handler(req, res);
+  else res.status(400).json({ code: 400, message: error });
 };
+
+export default validate;

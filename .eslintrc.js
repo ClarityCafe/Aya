@@ -5,4 +5,7 @@ module.exports = {
     sourceType: "module",
     project: "./tsconfig.json",
   },
+  rules: {
+    "new-cap": "off",
+  },
 };

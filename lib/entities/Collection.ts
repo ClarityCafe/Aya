@@ -1,28 +1,29 @@
-import {Entity, PrimaryColumn, Column, ManyToOne, ManyToMany} from "typeorm";
-import {User} from "./User";
-import {Post} from './Post';
-import {Tag} from './Tag';
+import { Entity, PrimaryColumn, Column, ManyToOne, ManyToMany } from "typeorm";
+
+import User from "./User";
+import Post from "./Post";
+import Tag from "./Tag";
 
 @Entity()
-export class Collection {
-    @PrimaryColumn("int", {unique: true})
-    public id: number;
+export default class Collection {
+  @PrimaryColumn("int", { unique: true })
+  id: number;
 
-    @Column("int")
-    @ManyToOne(type => User, user => user.collections)
-    public author: number;  
+  @Column("int")
+  @ManyToOne(() => User, (user) => user.collections)
+  author: number;
 
-    @Column("string", {length: 24})
-    public name: string;
+  @Column("string", { length: 24 })
+  name: string;
 
-    @Column("array")
-    @ManyToMany(type => Post, post => post.id)
-    public posts: Post[];
+  @Column("array")
+  @ManyToMany(() => Post, (post) => post.id)
+  posts: Post[];
 
-    @Column("bool")
-    public isNsfw: boolean;
+  @Column("bool")
+  isNsfw: boolean;
 
-    @ManyToMany(type => Tag, tags => tags.collections)
-    @Column("array")
-    tags: Tag[];
+  @ManyToMany(() => Tag, (tags) => tags.collections)
+  @Column("array")
+  tags: Tag[];
 }

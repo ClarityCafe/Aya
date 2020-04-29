@@ -1,27 +1,28 @@
-import {Entity, PrimaryColumn, ManyToOne, Column, ManyToMany, CreateDateColumn} from "typeorm";
-import {User} from './User';
-import {Tag} from './Tag';
+import { Entity, PrimaryColumn, ManyToOne, Column, ManyToMany } from "typeorm";
+
+import User from "./User";
+import Tag from "./Tag";
 
 @Entity()
-export class Post {
-    @PrimaryColumn("int", {unique: true})
-    public id: number;
+export default class Post {
+  @PrimaryColumn("int", { unique: true })
+  id: number;
 
-    @ManyToOne(type => User,  user => user.posts)
-    public author: number;
+  @ManyToOne(() => User, (user) => user.posts)
+  author: number;
 
-    @Column("string", {length: 24})
-    public caption: string;
+  @Column("string", { length: 24 })
+  caption: string;
 
-    @Column("string")
-    public cdnUrl: string;
+  @Column("string")
+  cdnUrl: string;
 
-    @Column("bool")
-    public isNsfw: boolean;
+  @Column("bool")
+  isNsfw: boolean;
 
-    @Column("timestamp")
-    public dateCreated: string;
+  @Column("timestamp")
+  dateCreated: string;
 
-    @ManyToMany(type => Tag, tags => tags.posts)
-    tags: Tag[];
+  @ManyToMany(() => Tag, (tags) => tags.posts)
+  tags: Tag[];
 }
