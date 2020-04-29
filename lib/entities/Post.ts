@@ -13,7 +13,7 @@ export default class Post extends Base {
   caption: string;
 
   @Column("string")
-  cdnUrl: string;
+  ipfsHash: string;
 
   @Column("bool")
   nsfw: boolean;

@@ -13,7 +13,7 @@ export const PostSchema = Joi.object({
   id: Joi.number(),
   author: Joi.number(),
   caption: Joi.string(),
-  cdnUrl: Joi.string(),
+  ipfsHash: Joi.string(),
   isNsfw: Joi.bool(),
   dateCreated: Joi.string(),
   tags: Joi.array(),
