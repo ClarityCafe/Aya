@@ -1,4 +1,4 @@
-# Project Aya: the globally-distributed waifu repository
+# Project Aya: the globally-distributed waifu repository [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FClarityCafe%2FAya.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FClarityCafe%2FAya?ref=badge_shield)
 
 Project Aya is not your typical booru. It's designed to be simple, minimal, and only focus on what matters most - the images.
 
@@ -7,7 +7,6 @@ Aya was created to leverage the current trend with web development - which is th
 We also made the UI much more simpler and modern compared to contemporaries, giving it a more professional, but simple look that is easy to get on to.
 
 ![image](https://user-images.githubusercontent.com/14976516/80306028-3c7f4d80-87f3-11ea-8a62-6fe12ac7353c.png)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FClarityCafe%2FAya.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FClarityCafe%2FAya?ref=badge_shield)
 
 And to top it off, we don't rely on S3 or any vendor-specific object storage, we use [IPFS](https://ipfs.io) to host our content, this makes sure your images are available, even if Project Aya goes down. 
 
