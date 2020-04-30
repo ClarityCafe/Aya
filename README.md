@@ -1,6 +1,6 @@
-# Project Aya: the globally-distributed waifu repository [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FClarityCafe%2FAya.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FClarityCafe%2FAya?ref=badge_shield)
+# Project Aya [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FClarityCafe%2FAya.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FClarityCafe%2FAya?ref=badge_shield)
 
-Project Aya is not your typical booru. It's designed to be simple, minimal, and only focus on what matters most - the images.
+Project Aya is not your typical image board. It's designed to be simple, minimal, and only focus on what matters most - the images.
 
 Aya was created to leverage the current trend with web development - which is the serverless web application trend. It allows websites to be more efficient with cost and ultimately would future-proof the platform by splitting a what would be a monolithic system for the API into a series of split functions that only executes when needed.
 
@@ -8,7 +8,7 @@ We also made the UI much more simpler and modern compared to contemporaries, giv
 
 ![image](https://user-images.githubusercontent.com/14976516/80306028-3c7f4d80-87f3-11ea-8a62-6fe12ac7353c.png)
 
-And to top it off, we don't rely on S3 or any vendor-specific object storage, we use [IPFS](https://ipfs.io) to host our content, this makes sure your images are available, even if Project Aya goes down. 
+And to top it off, we don't rely on S3 or any vendor-specific object storage, we use [IPFS](https://ipfs.io) to host our content, this makes sure your images are available, even if Project Aya goes down.
 
 ## Contributing
 
@@ -20,10 +20,10 @@ You will need the following first to get started:
 
 - SauceNAO API Key
 - MongoDB Database URL (a local one would work!)
+- Redis connection URL
 - Reddit OAuth secrets
 
-
-you will need to set them as environment variables (we make use of environment variables heavily so we can deploy on Vercel) - consult `lib/database.ts` and `lib/saucenao.ts` for the environment variable naming.
+you will need to set them as environment variables (we make use of environment variables heavily so we can deploy on Vercel) - consult `lib/database.ts` and `lib/sourceLookup.ts` for the environment variable naming.
 
 With that done, run the development server:
 
@@ -48,4 +48,5 @@ Copyright &copy; 2019 Ayane Satomi, Ovyerus, et al. Licensed under MIT.
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FClarityCafe%2FAya.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FClarityCafe%2FAya?ref=badge_large)
