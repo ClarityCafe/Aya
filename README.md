@@ -20,7 +20,7 @@ You will need the following first to get started:
 
 - SauceNAO API Key
 - MongoDB Database URL (a local one would work!)
-- Redis connection URL
+- Redis connection URL (Not required, but highly recommended for production deployments!)
 - Reddit OAuth secrets
 
 you will need to set them as environment variables (we make use of environment variables heavily so we can deploy on Vercel) - consult `lib/database.ts` and `lib/sourceLookup.ts` for the environment variable naming.
