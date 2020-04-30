@@ -1,7 +1,7 @@
 import { NextApiHandler } from "next";
 
+import { isAuthed } from "./auth";
 import handleError from "./handleError";
-import { isAuthed } from "./isAuthed";
 
 // TODO: probably add CORS stuff as well
 const methods = (methodHandlers: {
