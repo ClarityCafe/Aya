@@ -10,7 +10,14 @@
     "typeorm:local": "node ./node_modules/typeorm/cli.js",
     "g:entity": "yarn typeorm:local entity:create -n"
   },
+  "babel": {
+    "plugins": [
+      ["@babel/plugin-proposal-decorators", { "legacy": true }],
+      ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+    ]
+  },
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.8.3",
     "@hapi/joi": "^17.1.1",
     "biguint-format": "^1.0.2",
     "dotenv": "^8.2.0",
