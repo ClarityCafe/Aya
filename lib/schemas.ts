@@ -1,29 +1,41 @@
 import Joi from "@hapi/joi";
 
 export const CollectionSchema = Joi.object({
-  id: Joi.number(),
-  author: Joi.number(),
-  name: Joi.string(),
-  posts: Joi.array(),
-  isNsfw: Joi.bool(),
-  tags: Joi.array(),
+  author: Joi.string().required(),
+  name: Joi.string().max(500).required(),
+  // Must have at least one post
+  posts: Joi.array().items(Joi.string().required()).required(),
+  nsfw: Joi.bool().default(false),
 });
 
 export const PostSchema = Joi.object({
-  id: Joi.number(),
-  author: Joi.number(),
-  caption: Joi.string(),
-  ipfsHash: Joi.string(),
-  isNsfw: Joi.bool(),
-  dateCreated: Joi.string(),
-  tags: Joi.array(),
+  author: Joi.string().required(),
+  caption: Joi.string().max(500).required(),
+  ipfsHash: Joi.string().required(),
+  nsfw: Joi.bool().default(false),
+  tags: Joi.array()
+    .items(Joi.string().lowercase().max(32).required())
+    .required(),
 });
 
-export const UserSchema = Joi.object({
-  id: Joi.number(),
-  username: Joi.string().max(24),
-  redditLink: Joi.string().pattern(/https:\/\/reddit\.com\/u\/([\w]+[\d]?)/gi),
-  posts: Joi.array(),
-  collections: Joi.array(),
-  dateCreated: Joi.string(),
-});
+// TODO: reddit oauth on POST user
+// export const UserSchema = Joi.object({
+//   username: Joi.string().max(24),
+//   redditLink: Joi.string().pattern(/https:\/\/reddit\.com\/u\/([\w]+[\d]?)/gi),
+// });
+
+export interface CollectionBody {
+  author: string;
+  name: string;
+  posts: string[];
+  nsfw?: boolean;
+}
+
+export interface PostBody {
+  author: string;
+  caption: string;
+  ipfsHash: string;
+  nsfw?: boolean;
+  tags: string[];
+}
+export type UserBody = null;
