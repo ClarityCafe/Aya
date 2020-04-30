@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "env": {
+        "REDIS_URL": "@aya-redis-url",
+        "MONGODB_URL": "@aya-mongodb-url-production",
+        "MONGODB_URL_DEV": "@aya-mongodb-url-develop",
+        "SAUCENAO_KEY": "@aya-saucenao-key"
+      }
+}
