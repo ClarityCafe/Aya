@@ -1,3 +1,4 @@
+/* eslint-disable no-return-await */
 import Redis from "ioredis";
 import sagiri, { SagiriResult } from "sagiri";
 
@@ -7,6 +8,7 @@ const cache = new Redis(process.env.REDIS_URL);
 
 /**
  * Looks up using SauceNAO and saves it in a cache for 56 hours.
+ * If no cache is set, it just returns the query from SauceNAO directly.
  * @param sourceUrl the URL for the image to look up.
  */
 export default async function sourceLookup(sourceUrl: string) {
