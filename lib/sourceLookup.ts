@@ -1,4 +1,3 @@
-/* eslint-disable no-return-await */
 import Redis from "ioredis";
 import sagiri, { SagiriResult } from "sagiri";
 
