@@ -25,7 +25,7 @@ export default methods({
         posts: [],
         collections: [],
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       });
       res.status(204);
     }
