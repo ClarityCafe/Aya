@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, Column, ManyToMany } from "typeorm";
+import { Entity, ManyToOne, Column, ManyToMany, JoinTable } from "typeorm";
 
 import Base from "./Base";
 import Tag from "./Tag";
@@ -9,7 +9,7 @@ export default class Post extends Base {
   @ManyToOne(() => User, (user) => user.posts)
   author: number;
 
-  @Column("string", { length: 24 })
+  @Column("string", { length: 500 })
   caption: string;
 
   @Column("string")
@@ -19,5 +19,6 @@ export default class Post extends Base {
   nsfw: boolean;
 
   @ManyToMany(() => Tag, (tags) => tags.posts)
+  @JoinTable()
   tags: Tag[];
 }

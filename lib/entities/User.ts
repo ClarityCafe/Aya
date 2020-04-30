@@ -15,9 +15,9 @@ export default class User extends Base {
   @Column("string", { unique: true })
   redditName: string;
 
-  @OneToMany(() => Post, (post) => post.id)
+  @OneToMany(() => Post, (post) => post.author)
   posts: Post[];
 
-  @OneToMany(() => Collection, (collection) => collection.id)
+  @OneToMany(() => Collection, (collection) => collection.author)
   collections: Collection[];
 }
