@@ -24,9 +24,7 @@
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@hapi/joi": "^17.1.1",
-    "biguint-format": "^1.0.2",
     "dotenv": "^8.2.0",
-    "flake-idgen": "^1.4.0",
     "ioredis": "^4.16.3",
     "mongodb": "^3.5.6",
     "next": "9.3.6",
@@ -34,6 +32,7 @@
     "react-dom": "16.13.1",
     "reflect-metadata": "^0.1.13",
     "sagiri": "^3.0.5",
+    "simpleflakes": "^2.1.0",
     "typeorm": "^0.2.24"
   },
   "devDependencies": {
@@ -44,7 +43,6 @@
     "@types/react": "^16.9.34",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
-    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-clarity": "^0.4.4",
     "eslint-plugin-import": "^2.20.2",

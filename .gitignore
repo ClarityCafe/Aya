@@ -3,3 +3,4 @@ secrets.json
 .env
 .next
 .now
+yarn-error.log
