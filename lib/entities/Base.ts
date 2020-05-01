@@ -1,8 +1,10 @@
 import { PrimaryColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
-export default class Base {
-  @PrimaryColumn("int", { unique: true })
-  id: number;
+export default abstract class Base {
+  @PrimaryColumn("text", {
+    unique: true,
+  })
+  id: string;
 
   @CreateDateColumn()
   createdAt: Date;

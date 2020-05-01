@@ -6,10 +6,7 @@ import Post from "./Post";
 
 @Entity()
 export default class User extends Base {
-  @PrimaryColumn("int", { unique: true })
-  id: number;
-
-  @Column("string", { length: 24 })
+  @Column("string", { length: 32 })
   username: string;
 
   @Column("string", { unique: true })
