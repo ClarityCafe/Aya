@@ -11,6 +11,11 @@ const cache = new Redis(process.env.REDIS_URL);
  * @param sourceUrl the URL for the image to look up.
  */
 export default async function sourceLookup(sourceUrl: string) {
+  if (!process.env.REDIS_URL && process.env.NODE_ENV === "production")
+    console.warn(
+      "WARNING! Redis cache is unset! This is highly discouraged for production!"
+    );
+
   if (process.env.REDIS_URL)
     try {
       // Let's try to see if we already looked it up before...
