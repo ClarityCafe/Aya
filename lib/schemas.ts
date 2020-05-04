@@ -20,7 +20,7 @@ export const PostSchema = Joi.object({
 
 // TODO: reddit oauth on POST user
 // export const UserSchema = Joi.object({
-//   username: Joi.string().max(24),
+//   username: Joi.string().max(32),
 //   redditLink: Joi.string().pattern(/https:\/\/reddit\.com\/u\/([\w]+[\d]?)/gi),
 // });
 
@@ -38,4 +38,8 @@ export interface PostBody {
   nsfw?: boolean;
   tags: string[];
 }
-export type UserBody = null;
+
+export interface UserBody {
+  username: string;
+  redditName: string;
+}

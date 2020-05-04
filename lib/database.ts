@@ -1,136 +1,140 @@
 // I would let you know this was coded under 24 hours by some dipshit who lacks sleep
 // please help me I'm suffering inside
 // - Ayane Satomi
-import { ConnectionOptions, createConnection } from "typeorm";
+import "reflect-metadata";
 
+import { clamp } from "rambda";
+import { BaseEntity, Like, getConnection } from "typeorm";
+
+import Base from "./entities/Base";
 import Collection from "./entities/Collection";
 import Post from "./entities/Post";
 import Tag from "./entities/Tag";
 import User from "./entities/User";
+import idgen from "./idgen";
+import { CollectionBody, PostBody, UserBody } from "./schemas";
 
-let dbURL;
+const query = () => getConnection().createQueryBuilder();
+const clampLimit = clamp(10, 100);
+const getOneOfType = <T extends typeof Base>(type: T) => (id: string) =>
+  type.findOneOrFail({ id });
 
-if (process.env.NODE_ENV === "development") dbURL = process.env.MONGODB_URL_DEV;
-else dbURL = process.env.MONGODB_URL;
+// const paginate = <T extends typeof BaseEntity>(type: T) => async (
+//   page = 0,
+//   limit = 50
+// ) => {
+//   const limit_ = clampLimit(limit);
 
-// TODO: Support multiple DBs? I think the folks would like DB options.
-const config: ConnectionOptions = {
-  type: "mongodb",
-  host: dbURL,
-  entities: ["./entities/*.ts"],
-  migrations: ["./migrations/*.ts"],
+//   const results = await type
+//     .createQueryBuilder()
+//     .select()
+//     .skip(page * limit_)
+//     .take(limit_)
+//     .getMany();
+//   const total = await Post.createQueryBuilder().select().getCount();
+
+//   return { results, total, limit: limit_, page: page * limit_ };
+// };
+
+const search = <T extends typeof BaseEntity>(
+  type: T,
+  fields: string[]
+) => async (search: string, page = 0, limit = 50) => {
+  const limit_ = clampLimit(limit);
+
+  const users = await type.getRepository().find({
+    // TODO: does Like(`%blahblah%`) inject
+    where: fields.map((x) => ({ [x]: Like(`%${search}%`) })),
+    take: limit_,
+    skip: page * limit_,
+  });
+  const total = await type.createQueryBuilder().select().getCount();
+
+  return { results: users, total, limit: limit_, page: page * limit_ };
 };
 
-export async function createPost(input: Post) {
-  const connection = await createConnection(config);
+export const createPost = async ({
+  author,
+  caption,
+  ipfsHash,
+  nsfw,
+  tags,
+}: PostBody) => {
+  const id = idgen();
 
-  const newPost = new Post();
-  newPost.id = input.id;
-  newPost.caption = input.caption;
-  newPost.author = input.author;
-  newPost.ipfsHash = input.ipfsHash;
-  newPost.nsfw = input.nsfw;
-  newPost.tags = input.tags;
-  newPost.createdAt = input.createdAt;
-  newPost.updatedAt = input.updatedAt;
+  await query()
+    .insert()
+    .into(Post)
+    .values([{ id, caption, ipfsHash, nsfw }])
+    .execute();
 
-  await connection.mongoManager.save(newPost);
-}
+  await query().relation(Post, "author").of(id).set(author);
+  await query().relation(Post, "tags").of(id).add(tags);
+};
 
-export async function createCollection(input: Collection) {
-  const connection = await createConnection(config);
+export const createCollection = async ({
+  name,
+  nsfw,
+  author,
+  posts,
+}: CollectionBody) => {
+  const id = idgen();
 
-  const newCollection = new Collection();
-  newCollection.id = input.id;
-  newCollection.author = input.author;
-  newCollection.nsfw = input.nsfw;
-  newCollection.posts = input.posts;
-  newCollection.tags = input.tags;
-  newCollection.createdAt = input.createdAt;
-  newCollection.updatedAt = input.createdAt;
+  await query()
+    .insert()
+    .into(Collection)
+    .values([{ id, name, nsfw }])
+    .execute();
 
-  await connection.mongoManager.save(newCollection);
-}
+  await query().relation(Collection, "author").of(id).set(author);
+  await query().relation(Collection, "posts").of(id).add(posts);
+};
 
-export async function createTag(input: Tag) {
-  const connection = await createConnection(config);
-  const newTag = new Tag();
-  newTag.name = input.name;
-  newTag.posts = input.posts;
-  newTag.collections = input.collections;
-  newTag.isNsfw = input.isNsfw;
+export const createTag = async (name: string) => {
+  await query().insert().into(Tag).values([{ name }]).execute();
+};
 
-  await connection.mongoManager.save(newTag);
-}
+export const createUser = async ({ username, redditName }: UserBody) => {
+  const id = idgen();
 
-export async function createUser(input: User) {
-  const connection = await createConnection(config);
-  const newUser = new User();
-  newUser.id = input.id;
-  newUser.username = input.username;
-  newUser.redditName = input.redditName;
-  newUser.posts = input.posts;
-  newUser.collections = input.collections;
-  newUser.createdAt = input.createdAt;
-  newUser.updatedAt = input.updatedAt;
+  await query()
+    .insert()
+    .into(User)
+    .values([{ id, username, redditName }])
+    .execute();
+};
 
-  await connection.mongoManager.save(newUser);
-}
+// export const getPosts = paginate(Post);
+// export const getCollections = paginate(Collection);
+// export const getUsers = paginate(User);
 
-export async function getAllPosts() {
-  const connection = await createConnection(config);
+export const searchUsers = search(User, ["username", "redditName"]);
+export const searchCollections = search(Collection, ["name"]);
 
-  return connection.mongoManager.find(Post);
-}
+export const searchPostsByTags = async (
+  tags: string[],
+  page = 0,
+  limit = 20
+) => {
+  const [firstTag, ...restTags] = tags; // Pull first one out to start the first `WHERE`
+  const limit_ = clampLimit(limit);
 
-export async function getAllCollections() {
-  const connection = await createConnection(config);
+  let query = Post.createQueryBuilder("post")
+    .leftJoin("post.tags", "tag")
+    .where("tag.name = :tag", { tag: firstTag });
 
-  return connection.mongoManager.find(Collection);
-}
+  for (const tag of restTags)
+    query = query.andWhere("tag.name = :tag", { tag });
 
-export async function getAllUsers() {
-  const connection = await createConnection(config);
+  const posts = await query
+    .skip(page * limit_)
+    .take(limit_)
+    .execute();
+  const total = await query.getCount();
 
-  return connection.mongoManager.find(User);
-}
+  return { results: posts, total, limit: limit_, page: page * limit_ };
+};
 
-export async function searchUserByKeyword(keyword: string) {
-  const connection = await createConnection(config);
-
-  return connection.getRepository(User).find({ username: keyword });
-}
-
-export async function searchPostsByKeyword(keyword: string) {
-  const connection = await createConnection(config);
-
-  return connection
-    .getRepository(Post)
-    .find({ caption: keyword, tags: Tag[keyword] });
-}
-
-export async function searchCollectionByKeyword(keyword: string) {
-  const connection = await createConnection(config);
-
-  return connection
-    .getRepository(Collection)
-    .find({ name: keyword, tags: Tag[keyword] });
-}
-
-export async function searchUserById(id: number) {
-  const connection = await createConnection(config);
-
-  return connection.getRepository(User).findOneOrFail({ id });
-}
-
-export async function searchPostById(id: number) {
-  const connection = await createConnection(config);
-
-  return connection.getRepository(Post).findOneOrFail({ id });
-}
-
-export async function searchCollectionById(id: number) {
-  const connection = await createConnection(config);
-
-  return connection.getRepository(Post).findOneOrFail({ id });
-}
+export const getUser = getOneOfType(User);
+export const getPost = getOneOfType(Post);
+export const getCollection = getOneOfType(Collection);

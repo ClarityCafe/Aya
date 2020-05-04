@@ -5308,6 +5308,11 @@ querystring@0.2.0, querystring@^0.2.0:
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
   integrity sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
 
+rambda@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/rambda/-/rambda-5.1.1.tgz#e6c53d65fc060f94bcda951c0b0d8fee6096a73d"
+  integrity sha512-E2jeCwKxpJq4MgcL645yeeO9RkBRDn+jgvek9rUjX78CwB85XBlb6ETSIqiEwjp4KZ+JvxCqCHZGY/8jlg8doQ==
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"

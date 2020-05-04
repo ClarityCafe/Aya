@@ -7,7 +7,7 @@ import User from "./User";
 @Entity()
 export default class Post extends Base {
   @ManyToOne(() => User, (user) => user.posts)
-  author: number;
+  author: string;
 
   @Column("string", { length: 500 })
   caption: string;

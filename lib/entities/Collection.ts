@@ -8,7 +8,7 @@ import User from "./User";
 @Entity()
 export default class Collection extends Base {
   @ManyToOne(() => User, (user) => user.collections)
-  author: number;
+  author: string;
 
   @Column("string", { length: 500 })
   name: string;

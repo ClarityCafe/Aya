@@ -1,6 +1,11 @@
-import { PrimaryColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+  PrimaryColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  BaseEntity,
+} from "typeorm";
 
-export default abstract class Base {
+export default abstract class Base extends BaseEntity {
   @PrimaryColumn("text", {
     unique: true,
   })
