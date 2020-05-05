@@ -29,7 +29,7 @@ export default methods({
           tags: req.body.tags,
           nsfw: req.body.nsfw,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         });
 
         res.status(204).end();
