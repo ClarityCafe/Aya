@@ -5,6 +5,16 @@ module.exports = {
     sourceType: "module",
     project: "./tsconfig.json",
   },
+  settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
+    },
+    "import/resolver": {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+  },
   rules: {
     "new-cap": "off",
     "import/no-unassigned-import": ["error", { allow: ["reflect-metadata"] }],
