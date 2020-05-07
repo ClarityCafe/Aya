@@ -1,21 +1,16 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
-import { searchPostById } from "../../../lib/database";
-import methods from "../../../lib/methods";
+import { getPost } from "~/lib/database";
+import methods from "~/lib/methods";
 
 export default methods({
-  async get(req: NextApiRequest, res: NextApiResponse) {
-    const {
-      query: { id },
-    } = req;
+  async get(req, res) {
+    const { id } = req.query;
 
     try {
-      const dbResult = await searchPostById(parseInt(id[0]));
-
-      res.status(200).json(dbResult);
+      const result = await getPost(id as string);
+      res.json(result);
     } catch (e) {
       res.status(404).json({
-        code: res.statusCode.toString(),
+        code: 404,
         message: "Resource does not exist",
       });
     }

@@ -1,9 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
-import methods from "../../../lib/methods";
+import methods from "~/lib/methods";
 
 export default methods({
-  post(req: NextApiRequest, res: NextApiResponse) {
+  post(req, res) {
     res.status(503).json({ code: 503, message: "WIP" });
   },
 });

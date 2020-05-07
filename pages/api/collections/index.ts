@@ -1,37 +1,38 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import Joi from "@hapi/joi";
 
-import { createCollection, getAllCollections } from "../../../lib/database";
-import idGen from "../../../lib/idgen";
-import methods from "../../../lib/methods";
-import { CollectionSchema } from "../../../lib/schemas";
-import validate from "../../../lib/validate";
+import { createCollection, searchCollections } from "~/lib/database";
+import methods from "~/lib/methods";
+import { CollectionSchema, CollectionBody } from "~/lib/schemas";
+import validate from "~/lib/validate";
+
+const getCollectionsSchema = Joi.object({
+  query: Joi.string(),
+  limit: Joi.number(),
+  page: Joi.number(),
+});
+
+interface GetCollectionQuery {
+  query?: string;
+  limit?: number;
+  page?: number;
+}
 
 export default methods({
-  async get(req: NextApiRequest, res: NextApiResponse) {
-    // TODO: paginate this in Frontend!
-    const dbResult = await getAllCollections();
+  get: validate<GetCollectionQuery, "query">(
+    { schema: getCollectionsSchema, location: "query" },
+    async (req, res) => {
+      const { query, page, limit } = req.query;
+      const result = await searchCollections(query, page, limit);
 
-    res.status(200).json(dbResult);
-  },
+      res.json(result);
+    }
+  ),
   post: {
     authorizationRequired: true,
-    run: validate(
+    run: validate<CollectionBody>(
       { schema: CollectionSchema },
-      async (req: NextApiRequest, res: NextApiResponse) => {
-        if (req.headers["content-type"] !== "application/json")
-          res.end({ code: 400, message: "Request body is not JSON." });
-
-        await createCollection({
-          id: idGen(),
-          name: req.body.name,
-          author: req.body.author,
-          posts: req.body.posts,
-          tags: req.body.tags,
-          nsfw: req.body.nsfw,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        });
-
+      async (req, res) => {
+        await createCollection(req.body);
         res.status(204).end();
       }
     ),
