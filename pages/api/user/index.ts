@@ -1,4 +1,4 @@
-import Joi from "@hpai/joi";
+import Joi from "@hapi/joi";
 
 import { /* createUser, */ searchUsers } from "~/lib/database";
 import methods from "~/lib/methods";
