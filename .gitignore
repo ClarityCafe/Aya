@@ -4,3 +4,4 @@ secrets.json
 .next
 .now
 yarn-error.log
+**/.DS_Store

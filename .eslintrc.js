@@ -18,5 +18,6 @@ module.exports = {
   rules: {
     "new-cap": "off",
     "import/no-unassigned-import": ["error", { allow: ["reflect-metadata"] }],
+    "import/no-namespace": "off",
   },
 };
