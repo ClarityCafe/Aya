@@ -1,9 +1,13 @@
 import { Global, css } from "@emotion/core";
 import { AppProps } from "next/app";
+import Head from "next/head";
 import React from "react";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
+    <Head>
+      <link rel="icon" type="image/png" href="/favicon.png" />
+    </Head>
     <Global
       styles={css`
         :root {
