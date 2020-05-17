@@ -6,7 +6,13 @@ import Navbar from "~/components/navbar";
 const Home = () => (
   <>
     <Navbar />
-    <main>dig dig a hole</main>
+    <main
+      css={css`
+        padding: 1rem 80px;
+      `}
+    >
+      dig dig a hole
+    </main>
   </>
 );
 

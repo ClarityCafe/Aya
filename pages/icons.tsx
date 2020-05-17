@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import * as Icons from "@fluentui/react-icons";
 import { FC } from "react";
 
-// import * as Icons from "@fluentui/react-icons";
+// TODO: remove me once finalised
 
 const IconsPage = () => (
   <div
