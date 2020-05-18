@@ -17,7 +17,9 @@
     "@emotion/styled": "^10.0.27",
     "@fluentui/react-icons": "^0.1.18",
     "@hapi/joi": "^17.1.1",
+    "bent": "^7.3.1",
     "dotenv": "^8.2.0",
+    "form-data": "^3.0.0",
     "ioredis": "^4.17.0",
     "jose": "^1.27.0",
     "mongodb": "^3.5.7",
@@ -32,7 +34,9 @@
     "typeorm": "^0.2.24"
   },
   "devDependencies": {
+    "@types/bent": "^7.0.2",
     "@types/flake-idgen": "^0.1.30",
+    "@types/form-data": "^2.5.0",
     "@types/hapi__joi": "^17.1.0",
     "@types/ioredis": "^4.16.2",
     "@types/node": "^14.0.1",
