@@ -65,7 +65,7 @@ const Navbar: FC = () => (
       `}
     />
 
-    <fieldset
+    <div
       css={css`
         padding: 0.25rem 0.5rem;
         margin: 0;
@@ -75,11 +75,12 @@ const Navbar: FC = () => (
         display: flex;
         align-items: center;
         border-radius: 2px;
-        max-width: 350px;
+        max-width: 300px;
         width: 100%;
 
         & svg {
-          width: 16px;
+          width: 12px;
+          fill: #717171;
         }
 
         & label {
@@ -93,10 +94,14 @@ const Navbar: FC = () => (
           padding: 0;
           margin: 0;
           background: transparent;
-          font-size: 1rem;
+          font-size: 14px;
           font-family: inherit;
           appearance: none;
           width: 100%;
+
+          &::placeholder {
+            color: #717171;
+          }
         }
       `}
     >
@@ -104,7 +109,7 @@ const Navbar: FC = () => (
         <SearchIcon />
       </label>
       <input id="search" placeholder="Search by keyword/url" type="text" />
-    </fieldset>
+    </div>
 
     <NavbarButton>
       <PermissionsIcon />
