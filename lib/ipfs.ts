@@ -30,7 +30,7 @@ export async function post(file: Buffer) {
   form.append("file", file);
 
   const response = await request(
-    `/api/v0/add?pin=true`,
+    "/api/v0/add?pin=true",
     form,
     form.getHeaders()
   );
