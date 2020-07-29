@@ -2,7 +2,7 @@
 import bent from "bent";
 import FormData from "form-data";
 
-export async function upload(file: Buffer) {
+export async function post(file: Buffer) {
   const request = bent("https://ipfs.infura.io:5001", "json", "POST", 200);
   const form = new FormData();
 
